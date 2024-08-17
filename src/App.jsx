@@ -1,5 +1,5 @@
 import Navbar from "./Component/Navbar";
-import Result from "./Component/result";
+import Output from "./Component/Output";
 import { javascript } from "@codemirror/lang-javascript";
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
@@ -94,8 +94,8 @@ function App() {
             />
           </div>
         </div>
-        {/* RESULT */}
-        <Result srccode={srcCode} />
+        {/* Output */}
+        <Output srccode={srcCode} />
       </div>
     </>
   );

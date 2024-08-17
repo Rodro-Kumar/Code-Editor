@@ -4,10 +4,10 @@ import logo from "../assets/code.png";
 const Navbar = () => {
   return (
     <>
-      <div className="bg-slate-700 shadow-md shadow-slate-700 py-2 md:py-4 px-4 md:px-0">
+      <div className="px-4 py-2 shadow-md bg-slate-700 shadow-slate-700 md:py-4 md:px-0">
         <div className="container flex items-center gap-x-1">
           <div className="relative z-10">
-            <h1 className="md:text-3xl text-lg text-white font-Roboto font-bold -tracking-tighter capitalize">
+            <h1 className="text-lg font-bold text-white capitalize md:text-3xl font-Roboto -tracking-tighter">
               Code editor
             </h1>
 

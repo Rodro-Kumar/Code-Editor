@@ -1,18 +1,18 @@
 import React from "react";
 
-const Result = ({ srccode }) => {
+const Output = ({ srccode }) => {
   return (
     <>
-      <div className="pt-5 px-4 md:px-0">
+      <div className="px-4 pt-5 md:px-0">
         <div className="container">
-          <div className="bg-black p-2 rounded-t-xl">
-            <h5 className="md:text-2xl text-lg font-Roboto font-bold text-green-600 capitalize mb-2">
+          <div className="p-2 bg-black rounded-t-xl">
+            <h5 className="mb-2 text-lg font-bold text-green-600 capitalize md:text-2xl font-Roboto">
               output
             </h5>
           </div>
 
           <iframe
-            className="w-full h-80 rounded-b-xl bg-white"
+            className="w-full bg-white h-80 rounded-b-xl"
             srcDoc={srccode}
             title="output"
             sandbox="allow-scripts"
@@ -25,4 +25,4 @@ const Result = ({ srccode }) => {
   );
 };
 
-export default Result;
+export default Output;
