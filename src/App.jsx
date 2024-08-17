@@ -1,50 +1,101 @@
 import Navbar from "./Component/Navbar";
+import Result from "./Component/result";
 import { javascript } from "@codemirror/lang-javascript";
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
-import { useCallback } from "react";
-
+import CodeMirror from "@uiw/react-codemirror";
+import { useCallback, useState } from "react";
+import htmllogo from "../src/assets/html.png";
+import csslogo from "../src/assets/css.png";
+import jslogo from "../src/assets/js.png";
 function App() {
+  //* create three usestate
+  const [html_edit, setHtml_Edit] = useState("");
+  const [css_edit, setCss_Edit] = useState("");
+  const [js_edit, setJs_Edit] = useState("");
+
+  const onChangeHtml = useCallback((value) => {
+    setHtml_Edit(value);
+  }, []);
+  const onChangeCss = useCallback((value) => {
+    setCss_Edit(value);
+  }, []);
+  const onChangeJs = useCallback((value) => {
+    setJs_Edit(value);
+  }, []);
+
+  const srcCode = `
+  <html>
+   <body>${html_edit}</body>
+      <style>${css_edit}</style>
+      <script>${js_edit}</script>
+  </html>
+  `;
   return (
     <>
       <div>
         {/* Navbar */}
         <Navbar />
 
-        {/*//* HTML & CSS & JAVASCRIPT */}
-        <div className="container pt-10 flex items-center justify-between">
+        {/*//* Editor */}
+        <div className="container flex flex-col items-center justify-between px-4 pt-10 gap-y-4 md:flex-row xl:px-0 ">
           {/* HTML */}
-          <div className="w-[30%]">
-            <h4 className="text-red-500 bg-black mb-1 font-Roboto font-bold text-2xl">
-              Html
-            </h4>
-            <textarea
-              name="html"
-              id="html"
-              className="w-full bg-slate-600 border-2 border-white rounded-lg h-[500px] py-4 px-3 text-white font-Roboto font-medium text-md"
-            ></textarea>
+          <div className="w-full md:w-[32%]">
+            <div className="p-2 bg-black rounded-t-xl">
+              <h4 className="flex items-center text-lg font-bold text-red-500 font-Roboto md:text-2xl gap-x-2">
+                Html
+                <img src={htmllogo} alt="" className="w-[30px]" />
+              </h4>
+            </div>
+
+            <CodeMirror
+              className="border border-gray-700 md:text-xl text-md"
+              value={html_edit}
+              height="342px"
+              theme="dark"
+              extensions={[html(true)]}
+              onChange={onChangeHtml}
+            />
           </div>
-          <div className="w-[30%]">
-            <h4 className="text-sky-400 bg-black mb-1 font-Roboto font-bold text-2xl">
-              Css
-            </h4>
-            <textarea
-              name="html"
-              id="html"
-              className="w-full bg-slate-600 border-2 border-white rounded-lg h-[500px] py-4 px-3 text-white font-Roboto font-medium text-md"
-            ></textarea>
+          {/* CSS */}
+          <div className="w-full md:w-[32%]">
+            <div className="p-2 bg-black rounded-t-xl">
+              <h4 className="flex items-center text-lg font-bold text-sky-400 font-Roboto md:text-2xl gap-x-2">
+                Css
+                <img src={csslogo} alt="" className="w-[30px]" />
+              </h4>
+            </div>
+
+            <CodeMirror
+              className="border border-gray-700 md:text-xl text-md "
+              value={css_edit}
+              height="342px"
+              theme="dark"
+              extensions={[css(true)]}
+              onChange={onChangeCss}
+            />
           </div>
-          <div className="w-[30%]">
-            <h4 className="text-yellow-400 bg-black mb-1 font-Roboto font-bold text-2xl">
-              Javascript
-            </h4>
-            <textarea
-              name="html"
-              id="html"
-              className="w-full bg-slate-600 border-2 border-white rounded-lg h-[500px] py-4 px-3 text-white font-Roboto font-medium text-md"
-            ></textarea>
+          {/* JAVASCRIPT */}
+          <div className="w-full md:w-[32%]">
+            <div className="p-2 bg-black rounded-t-xl">
+              <h4 className="flex items-center text-lg font-bold text-yellow-400 font-Roboto md:text-2xl gap-x-2">
+                Javascript
+                <img src={jslogo} alt="" className="w-[30px]" />
+              </h4>
+            </div>
+
+            <CodeMirror
+              className="border border-gray-700 md:text-xl text-md"
+              value={js_edit}
+              height="342px"
+              theme="dark"
+              extensions={[javascript(true)]}
+              onChange={onChangeJs}
+            />
           </div>
         </div>
+        {/* RESULT */}
+        <Result srccode={srcCode} />
       </div>
     </>
   );
